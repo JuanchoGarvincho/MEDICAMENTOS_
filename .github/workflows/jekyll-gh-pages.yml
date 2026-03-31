@@ -28,10 +28,12 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        # Usamos --legacy-peer-deps por si hay conflictos entre las versiones de MUI y React
-        run: npm install --legacy-peer-deps
+        # 'npm ci' es preferible en CI porque es más estricto y rápido que 'npm install'
+        # Asegúrate de haber subido tu archivo package-lock.json al repositorio
+        run: npm ci
 
       - name: Build
+        # Esto generará la carpeta 'dist'
         run: npm run build
 
       - name: Setup Pages
@@ -40,7 +42,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Vite siempre genera la carpeta 'dist'
+          # Vite por defecto compila en la carpeta dist
           path: ./dist
 
   deploy:
