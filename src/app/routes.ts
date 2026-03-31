@@ -6,29 +6,32 @@ import { Alertas } from "./pages/Alertas";
 import { Perfil } from "./pages/Perfil";
 import { Reservacion } from "./pages/Reservacion";
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    Component: Login,
-  },
-  {
-    path: "/home",
-    Component: Home,
-  },
-  {
-    path: "/buscar",
-    Component: Buscar,
-  },
-  {
-    path: "/alertas",
-    Component: Alertas,
-  },
-  {
-    path: "/perfil",
-    Component: Perfil,
-  },
-  {
-    path: "/reservacion",
-    Component: Reservacion,
-  },
-]);
+export const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      Component: Login,
+    },
+    {
+      path: "/home",
+      Component: Home,
+    },
+    {
+      path: "/buscar",
+      Component: Buscar,
+    },
+    {
+      path: "/alertas",
+      Component: Alertas,
+    },
+    {
+      path: "/perfil",
+      Component: Perfil,
+    },
+    {
+      path: "/reservacion",
+      Component: Reservacion,
+    },
+  ],
+  { basename: '/MEDICAMENTOS_/' }
+);
