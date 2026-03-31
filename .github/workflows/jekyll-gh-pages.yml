@@ -1,9 +1,8 @@
-# Workflow para construir y desplegar un sitio de Node.js en GitHub Pages
-name: Deploy Node.js site to GitHub Pages
+name: Deploy React Vite site to GitHub Pages
 
 on:
   push:
-    branches: ["main"] # Asegúrate de que esta sea tu rama principal
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -25,14 +24,16 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20" # Puedes ajustar la versión de Node.js
+          node-version: "20"
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        # 'npm ci' es preferible en CI porque es más estricto y rápido que 'npm install'
+        # Asegúrate de haber subido tu archivo package-lock.json al repositorio
+        run: npm ci
 
       - name: Build
-        # Se usa build en lugar de dev para generar los archivos de producción
+        # Esto generará la carpeta 'dist'
         run: npm run build
 
       - name: Setup Pages
@@ -41,7 +42,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Ajusta esta ruta a tu carpeta de salida (normalmente 'dist' o 'build')
+          # Vite por defecto compila en la carpeta dist
           path: ./dist
 
   deploy:
